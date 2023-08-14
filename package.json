@@ -1,0 +1,13 @@
+{
+  "name": "ens_test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/in63119/ens_test.git",
+  "author": "<in63119@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "path": "^0.12.7",
+    "shelljs": "^0.8.5",
+    "truffle": "^5.11.2"
+  }
+}
