@@ -6,13 +6,15 @@
   "author": "<in63119@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "deploy": "node deploy.js"
+    "deploy": "node deploy.js",
+    "test": "node test/test.js"
   },
   "dependencies": {
     "@truffle/hdwallet-provider": "^2.1.13",
     "dotenv": "^16.3.1",
     "path": "^0.12.7",
     "shelljs": "^0.8.5",
-    "truffle": "^5.11.2"
+    "truffle": "^5.11.2",
+    "web3": "^4.0.3"
   }
 }

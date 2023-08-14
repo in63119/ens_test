@@ -24,7 +24,7 @@ contract ENS {
   function resolve(string memory _name) public view returns (address) {
     address addr = addresses[_name];
     // 도메인 이름이 등록되어 있는지 확인합니다.
-    require(addr != addresses[_name], "This is an unregistered address.");
+    require(addr == addresses[_name], "This is an unregistered address.");
 
     // 도메인 이름에 대한 주소를 반환합니다.
     return addresses[_name];
