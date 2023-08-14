@@ -5,7 +5,12 @@
   "repository": "https://github.com/in63119/ens_test.git",
   "author": "<in63119@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "deploy": "node deploy.js"
+  },
   "dependencies": {
+    "@truffle/hdwallet-provider": "^2.1.13",
+    "dotenv": "^16.3.1",
     "path": "^0.12.7",
     "shelljs": "^0.8.5",
     "truffle": "^5.11.2"
