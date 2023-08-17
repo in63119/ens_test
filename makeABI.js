@@ -22,10 +22,10 @@ const makeData = (json, address) => {
   });
 };
 
-const makeENSData = async (address) => {
-  makeFile("/data/artifacts/ENS.json", "/data/ENSABI.json", address);
+const makeKNSData = async (address) => {
+  makeFile("/data/artifacts/KNS.json", "/data/KNSABI.json", address);
 };
 
 module.exports = {
-  makeENSData,
+  makeKNSData,
 };

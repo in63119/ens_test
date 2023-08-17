@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "deploy": "node deploy.js",
-    "test": "node test/test.js"
+    "test": "node test/testKNS.js"
   },
   "dependencies": {
     "@truffle/hdwallet-provider": "^2.1.13",
