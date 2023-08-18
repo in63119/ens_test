@@ -13,8 +13,8 @@ contract KNS {
 
   // 등록
   function register(string memory _name, address _address) public returns (bool) {
-    require(allNames.length > 0, "There are no registered addresses.");
     require(addresses[_name] == address(0), "This name is already registered.");
+    require(bytes(names[_address]).length == 0, "This address is already registered.");
 
     addresses[_name] = _address;
     names[_address] = _name;
@@ -27,7 +27,7 @@ contract KNS {
     require(allNames.length > 0, "There are no registered addresses.");
 
     address _address = addresses[_name];
-    require(_address != address(0), "This is an unregistered address.");
+    require(_address != address(0), "This name is an unregistered address.");
 
     return _address;
   }
@@ -36,7 +36,7 @@ contract KNS {
   function fromAddressToName(address _address) public view returns (string memory) {
     require(allNames.length > 0, "There are no registered addresses.");
     string memory _name = names[_address];
-    require(bytes(_name).length != 0, "This is an unregistered address.");
+    require(bytes(_name).length != 0, "This address is an unregistered address.");
 
     return _name;
   }
@@ -47,6 +47,9 @@ contract KNS {
 
     address _address = addresses[_name];
     require(_address != address(0), "This is an unregistered address.");
+
+    // 만약에 사용자가 직접 트랜잭션을 보내게 되면 확인해야할 코드
+    // require(msg.sender == _address, "This is not your address.");
 
     txtRecordURIs[_name] = _txtRecordURI;
     allTxtRecords.push(_txtRecordURI);

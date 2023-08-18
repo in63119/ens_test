@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@truffle/hdwallet-provider": "^2.1.13",
+    "axios": "^1.4.0",
+    "caver-js": "^1.10.2",
     "dotenv": "^16.3.1",
     "path": "^0.12.7",
     "shelljs": "^0.8.5",

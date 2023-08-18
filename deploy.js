@@ -3,7 +3,7 @@ const shell = require("shelljs");
 const compileString = "truffle compile";
 
 // 테스트넷
-const deployString = "truffle deploy --network goerli --compile-none";
+const deployString = "truffle deploy --network baobab --compile-none";
 
 const init = async () => {
   console.log(" -------------- 배포 까지만 진행이 됩니다. --------------");
