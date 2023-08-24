@@ -21,10 +21,10 @@ const KNS_contract = new caver.klay.Contract(KNS_abi, KNS_address).methods;
   - nameToRegister: 등록할 이름
   - addressToRegister: 등록할 주소
 */
-const checkName = "hah"; // 확인할 이름
-const checkAddress = "0xF959343f3dA502C04423C028816b540cE6af368D"; // 확인할 주소
+const checkName = "insu"; // 확인할 이름
+const checkAddress = "0xf9E245E02aCafc6d282537d8245e7894aaB53848"; // 확인할 주소
 
-const nameToRegister = "hah"; // 등록할 이름(KNS & txtRecord 함께 사용)
+const nameToRegister = "insu"; // 등록할 이름(KNS & txtRecord 함께 사용)
 const addressToRegister = "0xF959343f3dA502C04423C028816b540cE6af368D"; // 등록할 주소
 
 /*
@@ -36,11 +36,11 @@ const addressToRegister = "0xF959343f3dA502C04423C028816b540cE6af368D"; // 등�
       - 레코드 등록
       - 레코드 조회
 */
-// const whatToUse = "등록";
+const whatToUse = "등록";
 // const whatToUse = "이름으로 주소 확인";
 // const whatToUse = "주소로 이름 확인";
 // const whatToUse = "레코드 등록";
-const whatToUse = "레코드 조회";
+// const whatToUse = "레코드 조회";
 
 const recordData = {
   avatar: "https://in-nft.s3.ap-northeast-2.amazonaws.com/In_kid.png",
@@ -48,6 +48,8 @@ const recordData = {
   email: "in63119@gmail.com",
   phone: "010-6669-4106",
   blog: "https://github.com/in63119",
+  kid1: { name: "jungha", nft: "uri" },
+  kid2: { name: "sujin", nft: "uri" },
 };
 
 const check = async (whatToUse) => {
