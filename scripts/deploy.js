@@ -1,5 +1,6 @@
 const { ethers } = require("hardhat");
 const namehash = require("eth-ens-namehash");
+const { makeAbi } = require("../makeABI");
 
 const tld = "test";
 const labelhash = (label) => ethers.keccak256(ethers.toUtf8Bytes(label));
@@ -22,6 +23,7 @@ async function main() {
   });
   await ens.waitForDeployment(); // deployed() 요거 왜 안되지?? ㅠㅠ => hardhat 버전이 업데이트 되면서 다른 것 써야함
   console.log("Registry at", ensAddress);
+  await makeAbi(ensAddress, "ens");
 
   let resolverAddress;
   const resolver = await PublicResolver.deploy(ensAddress, ZERO_ADDRESS).then(
@@ -33,11 +35,13 @@ async function main() {
   await resolver.waitForDeployment();
   await setupResolver(ens, resolver, accounts);
   console.log("Resolver at", resolverAddress);
+  await makeAbi(resolverAddress, "resolver");
 
   const registrar = await FIFSRegistrar.deploy(ens.target, namehash.hash(tld));
   await registrar.waitForDeployment();
   await setupRegistrar(ens, registrar);
   console.log("Registrar at", registrar.target);
+  await makeAbi(registrar.target, "registrar");
 
   const reverseRegistrar = await ReverseRegistrar.deploy(
     ens.target,
@@ -46,6 +50,7 @@ async function main() {
   await reverseRegistrar.waitForDeployment();
   await setupReverseRegistrar(ens, registrar, reverseRegistrar, accounts);
   console.log("ReverseRegistrar at", reverseRegistrar.target);
+  await makeAbi(reverseRegistrar.target, "reverseRegistrar");
 }
 
 async function setupResolver(ens, resolver, accounts) {

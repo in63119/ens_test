@@ -22,10 +22,22 @@ const makeData = (json, address) => {
   });
 };
 
-const makeKNSData = async (address) => {
-  makeFile("/data/artifacts/KNS.json", "/data/KNSABI.json", address);
+const makeAbi = async (address, contract) => {
+  let dir = "";
+
+  if (contract === "ens") {
+    dir = `/artifacts/@ensdomains/ens-contracts/contracts/registry/ENSRegistry.sol/ENSRegistry.json`;
+  } else if (contract === "resolver") {
+    dir = `/artifacts/@ensdomains/ens-contracts/contracts/resolvers/PublicResolver.sol/PublicResolver.json`;
+  } else if (contract === "registrar") {
+    dir = `/artifacts/@ensdomains/ens-contracts/contracts/registry/FIFSRegistrar.sol/FIFSRegistrar.json`;
+  } else if (contract === "reverseRegistrar") {
+    dir = `/artifacts/@ensdomains/ens-contracts/contracts/registry/ReverseRegistrar.sol/ReverseRegistrar.json`;
+  }
+
+  makeFile(dir, `/abis/${contract}.json`, address);
 };
 
 module.exports = {
-  makeKNSData,
+  makeAbi,
 };

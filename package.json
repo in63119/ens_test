@@ -6,13 +6,15 @@
   "author": "<in63119@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "deploy": "node deploy.js",
+    "deploy": "node scripts/deploy.js",
     "test": "node test/testKNS.js"
   },
   "dependencies": {
     "@ensdomains/ens-contracts": "0.0.8",
     "eth-ens-namehash": "^2.0.8",
-    "hardhat": "^2.6.5"
+    "fs": "^0.0.1-security",
+    "hardhat": "^2.6.5",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
