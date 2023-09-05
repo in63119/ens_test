@@ -1,12 +1,5 @@
 const { ethers } = require("hardhat");
-const namehash = require("eth-ens-namehash");
 const { makeAbi } = require("../makeABI");
-
-const tld = "test";
-const labelhash = (label) => ethers.keccak256(ethers.toUtf8Bytes(label));
-const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
-const ZERO_HASH =
-  "0x0000000000000000000000000000000000000000000000000000000000000000";
 
 async function main() {
   const ENSRegistry = await ethers.getContractFactory("ENSRegistry");
@@ -33,13 +26,11 @@ async function main() {
     }
   );
   await resolver.waitForDeployment();
-  await setupResolver(ens, resolver, accounts);
   console.log("Resolver at", resolverAddress);
   await makeAbi(resolverAddress, "resolver");
 
   const registrar = await FIFSRegistrar.deploy(ens.target, namehash.hash(tld));
   await registrar.waitForDeployment();
-  await setupRegistrar(ens, registrar);
   console.log("Registrar at", registrar.target);
   await makeAbi(registrar.target, "registrar");
 
@@ -48,35 +39,8 @@ async function main() {
     resolver.target
   );
   await reverseRegistrar.waitForDeployment();
-  await setupReverseRegistrar(ens, registrar, reverseRegistrar, accounts);
   console.log("ReverseRegistrar at", reverseRegistrar.target);
   await makeAbi(reverseRegistrar.target, "reverseRegistrar");
-}
-
-async function setupResolver(ens, resolver, accounts) {
-  const resolverNode = namehash.hash("resolver");
-  const resolverLabel = labelhash("resolver");
-  await ens.setSubnodeOwner(ZERO_HASH, resolverLabel, accounts[0]);
-  await ens.setResolver(resolverNode, resolver.target);
-  await resolver["setAddr(bytes32,address)"](resolverNode, resolver.target);
-}
-
-async function setupRegistrar(ens, registrar) {
-  await ens.setSubnodeOwner(ZERO_HASH, labelhash(tld), registrar.target);
-}
-
-async function setupReverseRegistrar(
-  ens,
-  registrar,
-  reverseRegistrar,
-  accounts
-) {
-  await ens.setSubnodeOwner(ZERO_HASH, labelhash("reverse"), accounts[0]);
-  await ens.setSubnodeOwner(
-    namehash.hash("reverse"),
-    labelhash("addr"),
-    reverseRegistrar.target
-  );
 }
 
 main()
